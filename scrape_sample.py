@@ -33,7 +33,7 @@ def write_data(team_id, year):
             
         data.append(l)
 
-    with open(f'{team_id}_{year}.csv', 'w') as f:
+    with open(f'./match_data/{team_id}_{year}.csv', 'w') as f:
         writer = csv.writer(f)
         writer.writerows(data)
 
