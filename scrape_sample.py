@@ -12,25 +12,7 @@ def write_data(team_id, year):
     records = soup.find_all('tr')
     data = []
     for record in records[1:]:
-        l = [field.text for field in record.find_all(['th','td'])]
-        #if record in records[2:]:        
-            #l[0] = int(l[0])
-            #dt = datetime.datetime.strptime(f'{year}.{l[1]}', '%Y.%m.%d')
-            #l[1] = datetime.date(dt.year, dt.month, dt.day)
-
-            #l[5] = 1 if l[5] == 'H' else 0
-
-            #for i in [11,13,14]:
-            #   l[i] = l[i].replace('%','')
-
-            #l[7] = l[7].replace(',','')
-
-            #for i in [0,7,9,10,12]:
-            #    l[i] = int(l[i])
-
-            #for i in [11,13,14,15,16,17,18]:
-            #    l[i] = float(l[i])
-            
+        l = [field.text for field in record.find_all(['th','td'])]           
         data.append(l)
 
     with open(f'./match_data/{team_id}_{year}.csv', 'w') as f:
@@ -38,23 +20,50 @@ def write_data(team_id, year):
         writer.writerows(data)
 
 def preprocess_data(team_id,year):
-    df = pd.read_csv(f'{team_id}_{year}.csv')
-    df.set_index('節',inplace=True)
-    df = df.rename(columns={df.columns[1]: '曜日'})
-    df = df.rename(columns={df.columns[4]: 'H/A'})
-    df['観客数'] = df['観客数'].str.replace(',','').astype(int)
-    df['チャンス構築率']= df['チャンス構築率'].str.replace('%','').astype(float)
-    df['シュート成功率']= df['シュート成功率'].str.replace('%','').astype(float)
+    df = pd.read_csv(f'./match_data/{team_id}_{year}.csv')
+    
 
-    with open(f'{team_id}_{year}.csv', 'w') as f:
-        writer = csv.writer(f)
-        writer.writerows(df)
+    df = df.rename(columns={df.columns[2]: '曜日'})
+    df = df.rename(columns={df.columns[5]: 'H/A'})
+    
+    df['観客数'] = df['観客数'].str.replace(',','').astype(int)
+    
+    df['チャンス構築率'] = df['チャンス構築率'].str.replace('%','').astype(float)*0.01
+    df["チャンス構築率"] = df["チャンス構築率"].round(3)
+
+    df['シュート成功率']= df['シュート成功率'].str.replace('%','').astype(float).round(3)*0.01
+    df["シュート成功率"] = df["シュート成功率"].round(3)
+    
+    df['支配率']= df['支配率'].str.replace('%','').astype(float).round(3)*0.01
+    df["支配率"] = df["支配率"].round(3)
+    
+    for i in range(len(df["開催日"])):
+        dt = datetime.datetime.strptime(f'{year}.{df["開催日"][i]}', '%Y.%m.%d')
+        df["開催日"][i] = datetime.date(dt.year, dt.month, dt.day)
+
+    score_list = []
+    concede_list = []
+    for i in range(len(df)):
+            score,concede=map(int,df["スコア"][i].split("-"))
+            score_list.append(score)
+            concede_list.append(concede)
+            
+    df.insert(5, '得点', score_list)
+    df.insert(6, '失点', concede_list)
+            
+    df=df.fillna("")
+    
+    for i in range(len(df)):
+        scorer_list = df["得点者"][i].split(",")
+        df["得点者"][i] = scorer_list
+
+    df.to_csv(f'match_data/{team_id}_{year}.csv')
 
 def main():
     for team_id in ('shim', 'fctk'):
         for year in (2019, 2020):
             write_data(team_id, year)
-           # preprocess_data(team_id, year)
+            preprocess_data(team_id, year)
             time.sleep(1)
 
 
