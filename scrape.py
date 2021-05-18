@@ -15,12 +15,12 @@ def write_data(team_id, year):
         l = [field.text for field in record.find_all(['th','td'])]           
         data.append(l)
 
-    with open(f'./match_data/{team_id}_{year}.csv', 'w') as f:
+    with open(f'./match_data/{team_id}/{team_id}_{year}.csv', 'w') as f:
         writer = csv.writer(f)
         writer.writerows(data)
 
 def preprocess_data(team_id,year):
-    df = pd.read_csv(f'./match_data/{team_id}_{year}.csv')
+    df = pd.read_csv(f'./match_data/{team_id}/{team_id}_{year}.csv')
     
 
     df = df.rename(columns={df.columns[2]: '曜日'})
@@ -57,11 +57,11 @@ def preprocess_data(team_id,year):
         scorer_list = df["得点者"][i].split(",")
         df["得点者"][i] = scorer_list
 
-    df.to_csv(f'match_data/{team_id}_{year}.csv')
+    df.to_csv(f'match_data/{team_id}/{team_id}_{year}.csv')
 
 def main():
-    for team_id in ('shim', 'fctk'):
-        for year in (2019, 2020):
+    for team_id in ('sapp','send','kasm','uraw','kasw','fctk',"ka-f","y-fm",'y-fc','shon','shim','nago','g-os','c-os','kobe','hiro','toku','fuku','tosu','oita'):
+        for year in (2018,2019, 2020):
             write_data(team_id, year)
             preprocess_data(team_id, year)
             time.sleep(1)
