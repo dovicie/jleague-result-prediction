@@ -22,9 +22,11 @@ def write_data(team_id, year):
 def preprocess_data(team_id,year):
     df = pd.read_csv(f'./match_data/{team_id}/{team_id}_{year}.csv')
     
-
     df = df.rename(columns={df.columns[2]: '曜日'})
+    
     df = df.rename(columns={df.columns[5]: 'H/A'})
+    df["H/A"]=df["H/A"].replace("H",0)
+    df["H/A"]=df["H/A"].replace("A",1)
     
     df['観客数'] = df['観客数'].str.replace(',','').astype(int)
     
