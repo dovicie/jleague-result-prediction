@@ -52,14 +52,26 @@ def preprocess_data(team_id,year):
             
     df.insert(5, '得点', score_list)
     df.insert(6, '失点', concede_list)
-            
+    
+    win_loss_list = []
+    for index,row in df.iterrows():
+        if row["得点"] >row["失点"]:
+            win_loss_list.append(1)
+        elif row["得点"] < row["失点"]:
+            win_loss_list.append(2)
+        else:
+            win_loss_list.append(0)
+    
+    df.insert(7,'勝敗',win_loss_list)
+    
+                
     df=df.fillna("")
     
     for i in range(len(df)):
         scorer_list = df["得点者"][i].split(",")
         df["得点者"][i] = scorer_list
 
-    df.to_csv(f'match_data/{team_id}/{team_id}_{year}.csv')
+    df.to_csv(f'match_data/{team_id}/{team_id}_{year}.csv',index=False)
 
 def main():
     for team_id in ('sapp','send','kasm','uraw','kasw','fctk',"ka-f","y-fm",'y-fc','shon','shim','nago','g-os','c-os','kobe','hiro','toku','fuku','tosu','oita'):
