@@ -5,8 +5,8 @@ import datetime
 import pandas as pd
 from bs4 import BeautifulSoup
 
-def write_data(team_id, year):
-    url = f'https://www.football-lab.jp/{team_id}/match/?year={year}'
+def write_data(team, year):
+    url = f'https://www.football-lab.jp/{team}/match/?year={year}'
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     records = soup.find_all('tr')
@@ -15,15 +15,21 @@ def write_data(team_id, year):
         l = [field.text for field in record.find_all(['th','td'])]           
         data.append(l)
 
-    with open(f'./match_data/{team_id}/{team_id}_{year}.csv', 'w') as f:
+    with open(f'./match_data/{team}/{team}_{year}.csv', 'w') as f:
         writer = csv.writer(f)
         writer.writerows(data)
 
-def preprocess_data(team_id,year):
-    df = pd.read_csv(f'./match_data/{team_id}/{team_id}_{year}.csv')
+def preprocess_data(team,year):
+    df = pd.read_csv(f'./match_data/{team}/{team}_{year}.csv')
+    team_and_id = pd.read_csv('./team_and_id.csv')
     
     df = df.rename(columns={df.columns[2]: '曜日'})
     
+#     for index,row in df.iterrows():
+#         for i,r in team_and_id.iterrows():
+#             if row["相手"] == r["チーム名"]:
+#                 team_id_list.append(r["team_id"])
+
     df = df.rename(columns={df.columns[5]: 'H/A'})
     df["H/A"]=df["H/A"].replace("H",0)
     df["H/A"]=df["H/A"].replace("A",1)
@@ -67,17 +73,27 @@ def preprocess_data(team_id,year):
                 
     df=df.fillna("")
     
+    team_id_list = []
     for i in range(len(df)):
         scorer_list = df["得点者"][i].split(",")
         df["得点者"][i] = scorer_list
+    
+    for index,row in df.iterrows():
+        if not row["相手"] in team_and_id["チーム名"].values:
+            team_id_list.append(0)
+        else:
+            for i,r in team_and_id.iterrows():
+                if row["相手"] == r["チーム名"]:
+                    team_id_list.append(r["team_id"])
+    df.insert(4, 'team_id', team_id_list)
 
-    df.to_csv(f'match_data/{team_id}/{team_id}_{year}.csv',index=False)
+    df.to_csv(f'match_data/{team}/{team}_{year}.csv',index=False)
 
 def main():
-    for team_id in ('sapp','send','kasm','uraw','kasw','fctk',"ka-f","y-fm",'y-fc','shon','shim','nago','g-os','c-os','kobe','hiro','toku','fuku','tosu','oita'):
+    for team in ('sapp','send','kasm','uraw','kasw','fctk',"ka-f","y-fm",'y-fc','shon','shim','nago','g-os','c-os','kobe','hiro','toku','fuku','tosu','oita'):
         for year in (2018,2019, 2020):
-            write_data(team_id, year)
-            preprocess_data(team_id, year)
+            write_data(team, year)
+            preprocess_data(team, year)
             time.sleep(1)
 
 
