@@ -21,14 +21,9 @@ def write_data(team, year):
 
 def preprocess_data(team,year):
     df = pd.read_csv(f'./match_data/{team}/{team}_{year}.csv')
-    team_and_id = pd.read_csv('./team_and_id.csv')
+    team_and_id = pd.read_csv('./club_and_id.csv')
     
     df = df.rename(columns={df.columns[2]: '曜日'})
-    
-#     for index,row in df.iterrows():
-#         for i,r in team_and_id.iterrows():
-#             if row["相手"] == r["チーム名"]:
-#                 team_id_list.append(r["team_id"])
 
     df = df.rename(columns={df.columns[5]: 'H/A'})
     df["H/A"]=df["H/A"].replace("H",0)
