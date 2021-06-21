@@ -13,5 +13,5 @@
 * 各クラブの年月ごとのイロレーティング収集 (https://footballdatabase.com/ranking/japan より)
 
 
-## ※ 命名規則
+### ※ 命名規則
 * http://www.jfa.or.jp/jfa/terminology/

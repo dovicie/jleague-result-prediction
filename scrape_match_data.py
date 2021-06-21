@@ -38,7 +38,7 @@ def preprocess_data(c,club,year):
     df["支配率"] = df["支配率"].round(3)
     
     for index,row in  df.iterrows():
-        df.at[index,"開催日"] = datetime.datetime.strptime(f'2019.{str(row["開催日"])}','%Y.%m.%d')
+        df.at[index,"開催日"] = datetime.datetime.strptime(f'{year}.{str(row["開催日"])}','%Y.%m.%d')
 
         
     goals_fors = []
