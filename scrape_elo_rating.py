@@ -26,6 +26,7 @@ def preprocess_data(team):
     
     for index,row in  df.iterrows():
         df.at[index,"Month"] = datetime.datetime.strptime(row["Month"],'%B %Y')
+    df["Month"] = pd.to_datetime(df["Month"])
 
     df.to_csv(f'elo_rating_data/{team}.csv',index=False)
 

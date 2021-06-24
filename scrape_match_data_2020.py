@@ -3,6 +3,7 @@ import csv
 import time
 import requests
 import datetime
+import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 
@@ -29,6 +30,7 @@ def write_data():
 def preprocess_data():
     df = pd.read_csv('./match_data_2020.csv')
     club_and_id = pd.read_csv('./club_and_id.csv')
+    df_17to19_pts = pd.read_csv("./results_2017_2019.csv") 
     
     df = df.replace({'\t','\r','\n'},'',regex=True)
     df = df.drop({"大会","インターネット中継・TV放送"}, axis=1) 
@@ -94,6 +96,33 @@ def preprocess_data():
     
     df = df.drop({"年度","K/O時刻" ,"スコア"}, axis=1) 
     df = df.rename(columns={'節': 'Sec', '試合日': 'Date',  'ホーム': 'Home', 'アウェイ': 'Away','スタジアム': 'Stadium', '入場者数': 'Attendances'})
+    
+    #  2017-2019の間での1試合あたりの勝ち点と得失点数(Points/M､GD)を作成
+    df.insert(11, "Points/M", np.nan)
+    df.insert(12,"GD",np.nan)
+    
+    for index,row in df.iterrows():
+        for i,r in df_17to19_pts.iterrows():
+            if row["HomeID"] == r["HomeClubID"] and row["AwayID"] == r["AwayClubID"] :
+                df.at[index,"Points/M"] = r["Points/M"]
+                df.at[index,"GD"] = r["GD"]
+                
+    df = df.dropna(how='any')
+    
+    
+    for index,row in df.iterrows():
+        df_home = pd.read_csv(f'./elo_rating_data/{row["Home"]}.csv')
+        df_away = pd.read_csv(f'./elo_rating_data/{row["Away"]}.csv')
+        df_home["Month"] = pd.to_datetime(df_home["Month"])
+        df_away["Month"] = pd.to_datetime(df_away["Month"])
+        for i,r in df_home.iterrows():
+            if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
+                df.at[index,"HomeElo"] = r["Points"]
+        for i,r in df_away.iterrows():
+            if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
+                df.at[index,"AwayElo"] = r["Points"]
+
+
     
  
     df.to_csv('./match_data_2020.csv',index=False)
