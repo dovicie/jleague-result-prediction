@@ -109,6 +109,11 @@ def preprocess_data():
                 
     df = df.dropna(how='any')
     
+    # 月始めのEloratingのPointと先月との差分(PD)を作成
+    df.insert(13 ,"HomeElo", np.nan)
+    df.insert(14,"AwayElo",np.nan)
+    df.insert(15 ,"HomeED", np.nan)
+    df.insert(16,"AwayED",np.nan)
     
     for index,row in df.iterrows():
         df_home = pd.read_csv(f'./elo_rating_data/{row["Home"]}.csv')
@@ -118,12 +123,12 @@ def preprocess_data():
         for i,r in df_home.iterrows():
             if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
                 df.at[index,"HomeElo"] = r["Points"]
+                df.at[index,"HomeED"] = r["PD"]
         for i,r in df_away.iterrows():
             if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
                 df.at[index,"AwayElo"] = r["Points"]
+                df.at[index,"AwayED"] = r["PD"]
 
-
-    
  
     df.to_csv('./match_data_2020.csv',index=False)
 
