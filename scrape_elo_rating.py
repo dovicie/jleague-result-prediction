@@ -27,8 +27,13 @@ def preprocess_data(team):
     for index,row in  df.iterrows():
         df.at[index,"Month"] = datetime.datetime.strptime(row["Month"],'%B %Y')
     df["Month"] = pd.to_datetime(df["Month"])
+    
+    PD = df["Points"].diff().rename("PD")
+    df = pd.concat([df, PD ],axis=1)
+    
 
     df.to_csv(f'elo_rating_data/{team}.csv',index=False)
+    
 
 def main():
     for team in ('consadole-sapporo','vegalta-sendai','kashima-antlers','urawa-red-diamonds','kashiwa-reysol','fc-tokyo','kawasaki-frontale','yokohama-fa-marinos','yokohama-fc','shonan-bellmare','shimizu-s-pulse','nagoya-grampus-eight','gamba-osaka','cerezo-osaka','vissel-kobe','sanfrecce-hiroshima','tokushima-vortis','avispa-fukuoka','sagan-tosu','oita-trinita'):
