@@ -32,6 +32,7 @@ def preprocess_data():
     
     df.insert(1,"club",clubs)
     
+    df = df.append({'club_id': 22, 'club': 'fc-tokyo', 'club_ja': 'Ｆ東京' }, ignore_index=True)
     
     df.to_csv(f'./club_and_id.csv',index=False)
     
