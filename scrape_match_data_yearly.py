@@ -80,24 +80,24 @@ def preprocess_data(year):
     df["Attendances"] = df["Attendances"].str.replace(',','').astype(int)
 
     
-    df.insert(13 ,"HomeElo", np.nan)
-    df.insert(14,"AwayElo",np.nan)
-    df.insert(15 ,"HomeED", np.nan)
-    df.insert(16,"AwayED",np.nan)
+#     df.insert(13 ,"HomeElo", np.nan)
+#     df.insert(14,"AwayElo",np.nan)
+#     df.insert(15 ,"HomeED", np.nan)
+#     df.insert(16,"AwayED",np.nan)
 
-    for index,row in df.iterrows():
-        df_home = pd.read_csv(f'./elo_rating_data/{row["Home"]}.csv')
-        df_away = pd.read_csv(f'./elo_rating_data/{row["Away"]}.csv')
-        df_home["Month"] = pd.to_datetime(df_home["Month"])
-        df_away["Month"] = pd.to_datetime(df_away["Month"])
-        for i,r in df_home.iterrows():
-            if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
-                df.at[index,"HomeElo"] = r["Points"]
-                df.at[index,"HomeED"] = r["PD"]
-        for i,r in df_away.iterrows():
-            if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
-                df.at[index,"AwayElo"] = r["Points"]
-                df.at[index,"AwayED"] = r["PD"]
+#     for index,row in df.iterrows():
+#         df_home = pd.read_csv(f'./elo_rating_data/{row["Home"]}.csv')
+#         df_away = pd.read_csv(f'./elo_rating_data/{row["Away"]}.csv')
+#         df_home["Month"] = pd.to_datetime(df_home["Month"])
+#         df_away["Month"] = pd.to_datetime(df_away["Month"])
+#         for i,r in df_home.iterrows():
+#             if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
+#                 df.at[index,"HomeElo"] = r["Points"]
+#                 df.at[index,"HomeED"] = r["PD"]
+#         for i,r in df_away.iterrows():
+#             if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
+#                 df.at[index,"AwayElo"] = r["Points"]
+#                 df.at[index,"AwayED"] = r["PD"]
 
                 
     df = df.drop("Score", axis=1)
@@ -105,7 +105,7 @@ def preprocess_data(year):
     df.to_csv(f'./match_data_yearly/{year}.csv',index=False)
     
 def main():
-    for year in (2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020):
+    for year in (2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020):
         write_data(year)
         preprocess_data(year)
         time.sleep(1)
