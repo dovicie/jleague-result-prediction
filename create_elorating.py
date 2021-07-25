@@ -58,7 +58,7 @@ def write_data():
             
         df_elo.loc[next_date]=df_elo.loc[next_date].fillna(df_elo.loc[date])
     
-    df_elo.to_csv('./elorating.csv')
+    df_elo.to_csv('./elorating.csv', index_label="date")
     
 
 def main():
