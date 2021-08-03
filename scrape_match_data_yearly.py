@@ -7,6 +7,12 @@ import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 
+club_and_id = pd.read_csv('./club_and_id.csv')
+
+df_elo = pd.read_csv("./elorating.csv")
+df_elo["date"] = pd.to_datetime(df_elo["date"])
+df_elo = df_elo.set_index("date")
+
 def write_data(year):        
     url = f'https://data.j-league.or.jp/SFMS01/search?competition_years={year}&competition_frame_ids=1' 
     r = requests.get(url)
@@ -23,7 +29,7 @@ def write_data(year):
 
 def preprocess_data(year):
     df = pd.read_csv(f'./match_data_yearly/{year}.csv')
-    club_and_id = pd.read_csv('./club_and_id.csv')
+#     club_and_id = pd.read_csv('./club_and_id.csv')
 
     df = df.drop({"K/O時刻" ,"大会","インターネット中継・TV放送"}, axis=1) 
     df = df.rename(columns={'年度':'Year','節': 'Sec', '試合日': 'Date',  'ホーム': 'Home','スコア':'Score', 'アウェイ': 'Away','スタジアム': 'Stadium', '入場者数': 'Attendances'})
@@ -62,9 +68,10 @@ def preprocess_data(year):
         df.at[index,"HomeGF"] = home_gf
         df.at[index,"AwayGF"] = away_gf
     df[['HomeGF', 'AwayGF']] = df[['HomeGF', 'AwayGF']].astype('int')
+    df = df.drop("Score", axis=1)
     
 
-    df.insert(10,'W/L',np.nan) 
+    df.insert(9,'W/L',np.nan) 
 
     for index,row in df.iterrows():
             if row["HomeGF"] >row["AwayGF"]:
@@ -73,17 +80,23 @@ def preprocess_data(year):
                 df.at[index,"W/L"] = 2
             else:
                 df.at[index,"W/L"] = 0
+                
+    
 
     df['W/L'] = df['W/L'].astype('int')
     
 
     df["Attendances"] = df["Attendances"].str.replace(',','').astype(int)
 
+
+    df.insert(12 ,"HomeElo", np.nan)
+    df.insert(13,"AwayElo",np.nan)
+    df.insert(14 ,"HomeED", np.nan)
+    df.insert(15,"AwayED",np.nan)
     
-#     df.insert(13 ,"HomeElo", np.nan)
-#     df.insert(14,"AwayElo",np.nan)
-#     df.insert(15 ,"HomeED", np.nan)
-#     df.insert(16,"AwayED",np.nan)
+    df["Date"]=pd.to_datetime(df["Date"])
+    
+#     df_elo =pd.read_csv("./elorating.csv")
 
 #     for index,row in df.iterrows():
 #         df_home = pd.read_csv(f'./elo_rating_data/{row["Home"]}.csv')
@@ -99,8 +112,18 @@ def preprocess_data(year):
 #                 df.at[index,"AwayElo"] = r["Points"]
 #                 df.at[index,"AwayED"] = r["PD"]
 
-                
-    df = df.drop("Score", axis=1)
+    for index,row in df.iterrows():
+        home_elo = df_elo.loc[row["Date"], row["Home"]]
+        away_elo = df_elo.loc[row["Date"], row["Away"]]    
+
+        df.at[index,"HomeElo"] = home_elo
+        df.at[index,"AwayElo"] = away_elo
+
+        home_elo_1mago = df_elo.loc[row["Date"]- pd.tseries.offsets.DateOffset(months = 1), row["Home"]]
+        away_elo_1mago = df_elo.loc[row["Date"]- pd.tseries.offsets.DateOffset(months = 1), row["Away"]]
+
+        df.at[index,"HomeED"] = home_elo - home_elo_1mago
+        df.at[index,"AwayED"] = away_elo - away_elo_1mago
  
     df.to_csv(f'./match_data_yearly/{year}.csv',index=False)
     

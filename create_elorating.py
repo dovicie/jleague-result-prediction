@@ -26,18 +26,19 @@ def calculate_g(n):
 
 def write_data():
     csvs = glob.glob('./match_data_yearly/*.csv')
-    df_match = pd.DataFrame()
-    for csv in csvs:
-        df_match = df_match.append(pd.read_csv(csv))
+#     df_match = pd.DataFrame()
+#     for csv in csvs:
+#         df_match = df_match.append(pd.read_csv(csv))
+    df_match = pd.read_csv("./match_data_yearly/all_years.csv")
     df_match = df_match.sort_values(['Date','Sec']).reset_index(drop=True)    
 
     df_club = pd.read_csv("./club_and_id.csv")
     clubs = list(df_club["club"])[:-1:]
     initial_rates = [1500,1500,1500,1380,1500,1380,1500,1500,1500,1500,1380,1380,1500,1380,1380,1500,1500,1500,1500,1500,1500,1500,1380,1500,1380,1380,1380,1380,1380,1380,1500]
 
-    date_index = pd.date_range(start="2006-03-04", end="2020-12-20", freq="D")
+    date_index = pd.date_range(start="2006-02-04", end="2020-12-20", freq="D")
     df_elo=pd.DataFrame(columns=clubs,index = date_index )
-    df_elo.loc["2006-03-04"] = initial_rates
+    df_elo.loc["2006-02-04"] = initial_rates
 
     df_match["Date"] =  pd.to_datetime(df_match["Date"])
 
