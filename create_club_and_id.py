@@ -32,7 +32,14 @@ def preprocess_data():
     
     df.insert(1,"club",clubs)
     
-    df = df.append({'club_id': 22, 'club': 'fc-tokyo', 'club_ja': 'Ｆ東京' }, ignore_index=True)
+    df = df.append(
+        [
+            {'club_id': 5, 'club': 'yokohama-fa-marinos', 'club_ja': '横浜Ｍ' },
+            {'club_id': 21, 'club': 'kawasaki-frontale', 'club_ja': '川崎' },
+            {'club_id': 22, 'club': 'fc-tokyo', 'club_ja': 'Ｆ東京' },
+            {'club_id': 34, 'club': 'yokohama-fc', 'club_ja': '横浜Ｃ' },
+        ],
+        ignore_index=True)
     
     df.to_csv(f'./club_and_id.csv',index=False)
     

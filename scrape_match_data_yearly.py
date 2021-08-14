@@ -124,7 +124,17 @@ def preprocess_data(year):
 
         df.at[index,"HomeED"] = home_elo - home_elo_1mago
         df.at[index,"AwayED"] = away_elo - away_elo_1mago
- 
+        
+    df[["HomeElo","AwayElo","HomeED","AwayED"]] = round(df[["HomeElo","AwayElo","HomeED","AwayED"]]).astype(int)
+    
+    
+    df.insert(0,"ID",np.nan)
+    df["ID"] = df["ID"].astype(str)
+    
+    for index,row in df.iterrows():
+        df.at[index,"ID"] = row["Date"].strftime('%y')+str(row["Sec"]).zfill(2)+str(row["HomeID"]).zfill(2)+str(row["AwayID"]).zfill(2)
+     
+
     df.to_csv(f'./match_data_yearly/{year}.csv',index=False)
     
 def main():
