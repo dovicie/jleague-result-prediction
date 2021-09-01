@@ -1,6 +1,14 @@
 ,,Date,Winning,Match1,Match1,Match1,Match1,Match2,Match2,Match2,Match2,Match3,Match3,Match3,Match3,Match4,Match4,Match4,Match4,Match5,Match5,Match5,Match5
 ,,,,MatchID,Home,Away,W/L,MatchID,Home,Away,W/L,MatchID,Home,Away,W/L,MatchID,Home,Away,W/L,MatchID,Home,Away,W/L
 No,Group,,,,,,,,,,,,,,,,,,,,,,
+988,A,2018-02-27,26270,18012203,fc-tokyo,urawa-red-diamonds,0,18011014,sanfrecce-hiroshima,consadole-sapporo,1,18010908,gamba-osaka,nagoya-grampus-eight,2,18015411,vegalta-sendai,kashiwa-reysol,1,18010701,shimizu-s-pulse,kashima-antlers,0
+989,A,2018-03-06,12745,18020813,nagoya-grampus-eight,jubilo-iwata,1,18022254,fc-tokyo,vegalta-sendai,2,18020109,kashima-antlers,gamba-osaka,1,18021807,vissel-kobe,shimizu-s-pulse,2,18024733,v-varen-nagasaki,sagan-tosu,0
+990,A,2018-03-09,11876,18290713,shimizu-s-pulse,jubilo-iwata,1,18161233,shonan-bellmare,sagan-tosu,1,18291847,vissel-kobe,v-varen-nagasaki,0,18240803,nagoya-grampus-eight,urawa-red-diamonds,2,18280910,gamba-osaka,sanfrecce-hiroshima,2
+991,A,2018-03-13,11117,18032109,kawasaki-frontale,gamba-osaka,1,18030533,yokohama-fa-marinos,sagan-tosu,2,18035418,vegalta-sendai,vissel-kobe,0,18031120,kashiwa-reysol,cerezo-osaka,0,18031322,jubilo-iwata,fc-tokyo,1
+996,A,2018-04-03,23366,18050705,shimizu-s-pulse,yokohama-fa-marinos,2,18050114,kashima-antlers,consadole-sapporo,0,18052209,fc-tokyo,gamba-osaka,1,18052110,kawasaki-frontale,sanfrecce-hiroshima,2,18052012,cerezo-osaka,shonan-bellmare,1
+998,A,2018-04-10,3176,18061408,consadole-sapporo,nagoya-grampus-eight,1,18062033,cerezo-osaka,sagan-tosu,1,18060354,urawa-red-diamonds,vegalta-sendai,1,18064722,v-varen-nagasaki,fc-tokyo,2,18061110,kashiwa-reysol,sanfrecce-hiroshima,2
+999,A,2018-04-13,8321,18072201,fc-tokyo,kashima-antlers,1,18072120,kawasaki-frontale,cerezo-osaka,2,18071005,sanfrecce-hiroshima,yokohama-fa-marinos,1,18070854,nagoya-grampus-eight,vegalta-sendai,2,18070913,gamba-osaka,jubilo-iwata,1
+999,B,2018-04-13,14798,18070854,nagoya-grampus-eight,vegalta-sendai,2,18070913,gamba-osaka,jubilo-iwata,1,18071412,consadole-sapporo,shonan-bellmare,1,18070747,shimizu-s-pulse,v-varen-nagasaki,2,18071803,vissel-kobe,urawa-red-diamonds,2
 1000,A,2018-04-17,4732,18080108,kashima-antlers,nagoya-grampus-eight,1,18084709,v-varen-nagasaki,gamba-osaka,1,18082022,cerezo-osaka,fc-tokyo,1,18080518,yokohama-fa-marinos,vissel-kobe,2,18081210,shonan-bellmare,sanfrecce-hiroshima,2
 1002,A,2018-04-24,7195,18090722,shimizu-s-pulse,fc-tokyo,2,18091033,sanfrecce-hiroshima,sagan-tosu,1,18090512,yokohama-fa-marinos,shonan-bellmare,0,18095413,vegalta-sendai,jubilo-iwata,2,18092101,kawasaki-frontale,kashima-antlers,1
 1003,A,2018-04-27,22087,18100118,kashima-antlers,vissel-kobe,0,18101103,kashiwa-reysol,urawa-red-diamonds,1,18101347,jubilo-iwata,v-varen-nagasaki,2,18102210,fc-tokyo,sanfrecce-hiroshima,1,18103321,sagan-tosu,kawasaki-frontale,2
