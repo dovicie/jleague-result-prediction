@@ -41,6 +41,9 @@ def preprocess_data():
         ],
         ignore_index=True)
     
+    club_abbies = ["kasm","chib","uraw","tk-v","y-fm","y-fg","shim","nago","g-os","hiro","kasw","shon","iwat","sapp","kobe","c-os","ka-f","fctk","fuku","kyot","omiy","kofu","yama","oita","tosu","y-fc","toku","mats","ngsk","send","niig","y-fm","ka-f","fctk","y-fc"]
+    df.insert(2,"club_abbr",club_abbies)
+    
     df.to_csv(f'./club_and_id.csv',index=False)
     
 def main():
