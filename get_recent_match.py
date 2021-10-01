@@ -53,32 +53,38 @@ def get_ave_recent_stats(match_id):
 
     # Home
     for mid in get_recent_match_id(match_id)[0]:
-        s = pd.read_csv(f"./stats/2020/{mid}.csv", index_col=0)[home]
+        s = pd.read_csv(f"./stats/{mid}.csv", index_col=0)[home]
         home_recent_stats = pd.concat([home_recent_stats, s], axis = 1)
     home_ave_recent_stats = home_recent_stats.mean(axis=1)
-    home_ave_recent_stats
-
-    # Away
-    for mid in get_recent_match_id(match_id)[1]:
-        s = pd.read_csv(f"./stats/2020/{mid}.csv", index_col=0)[away]
-        away_recent_stats = pd.concat([away_recent_stats, s], axis = 1)     
-    away_ave_recent_stats = away_recent_stats.mean(axis=1)
-    away_ave_recent_stats
     
     try:
         home_ave_recent_stats.drop("ExpG", inplace=True)
+    except KeyError:
+        pass
+    try:
+        home_ave_recent_stats.drop("Sprints", inplace=True)
+    except KeyError:
+        pass
+    try:
+        home_ave_recent_stats.drop("DistanceCovered", inplace=True)
+    except KeyError:
+        pass
+
+    # Away
+    for mid in get_recent_match_id(match_id)[1]:
+        s = pd.read_csv(f"./stats/{mid}.csv", index_col=0)[away]
+        away_recent_stats = pd.concat([away_recent_stats, s], axis = 1)     
+    away_ave_recent_stats = away_recent_stats.mean(axis=1)
+    
+    try:
         away_ave_recent_stats.drop("ExpG", inplace=True)
     except KeyError:
         pass
-
     try:
-        home_ave_recent_stats.drop("Sprints", inplace=True)
         away_ave_recent_stats.drop("Sprints", inplace=True)
     except KeyError:
         pass
-
     try:
-        home_ave_recent_stats.drop("DistanceCovered", inplace=True)
         away_ave_recent_stats.drop("DistanceCovered", inplace=True)
     except KeyError:
         pass
