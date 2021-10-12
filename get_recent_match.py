@@ -53,7 +53,7 @@ def get_ave_recent_stats(match_id):
 
     # Home
     for mid in get_recent_match_id(match_id)[0]:
-        s = pd.read_csv(f"./stats/{mid}.csv", index_col=0)[home]
+        s = pd.read_csv(f"./stats/*/{mid}.csv", index_col=0)[home]
         home_recent_stats = pd.concat([home_recent_stats, s], axis = 1)
     home_ave_recent_stats = home_recent_stats.mean(axis=1)
     
@@ -72,7 +72,7 @@ def get_ave_recent_stats(match_id):
 
     # Away
     for mid in get_recent_match_id(match_id)[1]:
-        s = pd.read_csv(f"./stats/{mid}.csv", index_col=0)[away]
+        s = pd.read_csv(f"./stats/*/{mid}.csv", index_col=0)[away]
         away_recent_stats = pd.concat([away_recent_stats, s], axis = 1)     
     away_ave_recent_stats = away_recent_stats.mean(axis=1)
     

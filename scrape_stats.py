@@ -49,7 +49,7 @@ def scrape(year):
             data.append(l)
 
 
-        with open(f'./stats/{match_id}.csv', 'w') as f:
+        with open(f'./stats/{year}/{match_id}.csv', 'w') as f:
             writer = csv.writer(f)
             writer.writerows(data)
             
@@ -90,7 +90,7 @@ def scrape(year):
         except ValueError:
             print(f"ID : {match_id} ,URL : {url}")
         
-        df.to_csv(f"./stats/{match_id}.csv")
+        df.to_csv(f"./stats/{year}/{match_id}.csv")
         
         time.sleep(1)
             
