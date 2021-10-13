@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 09012278,2009,1,2009-03-07,fc-tokyo,albirex-niigata,22,78,1,4,2,味スタ,27568,1514,1472,0,0
 09010510,2009,1,2009-03-07,yokohama-fa-marinos,sanfrecce-hiroshima,5,10,2,4,2,日産ス,23601,1510,1431,0,0
 09010831,2009,1,2009-03-07,nagoya-grampus-eight,oita-trinita,8,31,3,2,1,豊田ス,25395,1533,1519,0,0

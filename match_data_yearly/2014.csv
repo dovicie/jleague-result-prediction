@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 14012010,2014,1,2014-03-01,cerezo-osaka,sanfrecce-hiroshima,20,10,0,1,2,ヤンマー,37079,1545,1584,0,0
 14010807,2014,1,2014-03-01,nagoya-grampus-eight,shimizu-s-pulse,8,7,2,3,2,豊田ス,21657,1535,1510,0,0
 14013336,2014,1,2014-03-01,sagan-tosu,tokushima-vortis,33,36,5,0,1,ベアスタ,14296,1493,1380,0,0

@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 18013318,2018,1,2018-02-23,sagan-tosu,vissel-kobe,33,18,1,1,0,ベアスタ,19633,1507,1491,0,0
 18012203,2018,1,2018-02-24,fc-tokyo,urawa-red-diamonds,22,3,1,1,0,味スタ,35951,1498,1580,0,0
 18011014,2018,1,2018-02-24,sanfrecce-hiroshima,consadole-sapporo,10,14,1,0,1,Ｅスタ,17026,1503,1392,0,0

@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 08010902,2008,1,2008-03-08,gamba-osaka,jef-united,9,2,0,0,0,万博,18093,1593,1466,0,0
 08012218,2008,1,2008-03-08,fc-tokyo,vissel-kobe,22,18,1,1,0,味スタ,24390,1473,1444,0,0
 08010824,2008,1,2008-03-08,nagoya-grampus-eight,kyoto-sanga,8,24,1,1,0,豊田ス,26102,1494,1409,0,0

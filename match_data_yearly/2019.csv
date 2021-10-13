@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 19012018,2019,1,2019-02-22,cerezo-osaka,vissel-kobe,20,18,1,0,1,ヤンマー,42221,1532,1493,0,0
 19013308,2019,1,2019-02-23,sagan-tosu,nagoya-grampus-eight,33,8,0,4,2,駅スタ,18382,1500,1455,0,0
 19011007,2019,1,2019-02-23,sanfrecce-hiroshima,shimizu-s-pulse,10,7,1,1,0,Ｅスタ,14084,1512,1471,0,0

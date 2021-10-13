@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 07012210,2007,1,2007-03-03,fc-tokyo,sanfrecce-hiroshima,22,10,2,4,2,味スタ,25257,1478,1500,0,0
 07010528,2007,1,2007-03-03,yokohama-fa-marinos,ventforet-kofu,5,28,1,0,1,日産ス,24466,1485,1479,0,0
 07013178,2007,1,2007-03-03,oita-trinita,albirex-niigata,31,78,1,1,0,九石ド,20039,1493,1471,0,0

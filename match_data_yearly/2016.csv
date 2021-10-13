@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 16011308,2016,1,2016-02-27,jubilo-iwata,nagoya-grampus-eight,13,8,0,1,2,ヤマハ,14333,1404,1512,0,0
 16011021,2016,1,2016-02-27,sanfrecce-hiroshima,kawasaki-frontale,10,21,0,1,2,Ｅスタ,18120,1628,1562,0,0
 16013323,2016,1,2016-02-27,sagan-tosu,avispa-fukuoka,33,23,2,1,1,ベアスタ,19762,1502,1379,0,0

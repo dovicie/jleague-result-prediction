@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 20011203,2020,1,2020-02-21,shonan-bellmare,urawa-red-diamonds,12,3,2,3,2,ＢＭＷス,13071,1422,1484,0,0
 20015408,2020,1,2020-02-22,vegalta-sendai,nagoya-grampus-eight,54,8,1,1,0,ユアスタ,13968,1459,1431,0,0
 20012031,2020,1,2020-02-22,cerezo-osaka,oita-trinita,20,31,1,0,1,ヤンマー,15535,1558,1427,0,0

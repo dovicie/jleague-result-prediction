@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 10011354,2010,1,2010-03-06,jubilo-iwata,vegalta-sendai,13,54,0,1,2,ヤマハ,10440,1453,1380,0,0
 10011229,2010,1,2010-03-06,shonan-bellmare,montedio-yamagata,12,29,1,1,0,平塚,11280,1380,1415,0,0
 10012205,2010,1,2010-03-06,fc-tokyo,yokohama-fa-marinos,22,5,1,0,1,味スタ,29011,1523,1513,0,0

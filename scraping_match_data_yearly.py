@@ -89,43 +89,27 @@ def preprocess_data(year):
     df["Attendances"] = df["Attendances"].str.replace(',','').astype(int)
 
 
-    df.insert(12 ,"HomeElo", np.nan)
-    df.insert(13,"AwayElo",np.nan)
-    df.insert(14 ,"HomeED", np.nan)
-    df.insert(15,"AwayED",np.nan)
+    df.insert(12 ,"HomeRate", np.nan)
+    df.insert(13,"AwayRate",np.nan)
+    df.insert(14 ,"HomeRD", np.nan)
+    df.insert(15,"AwayRD",np.nan)
     
     df["Date"]=pd.to_datetime(df["Date"])
-    
-#     df_elo =pd.read_csv("./elorating.csv")
-
-#     for index,row in df.iterrows():
-#         df_home = pd.read_csv(f'./elo_rating_data/{row["Home"]}.csv')
-#         df_away = pd.read_csv(f'./elo_rating_data/{row["Away"]}.csv')
-#         df_home["Month"] = pd.to_datetime(df_home["Month"])
-#         df_away["Month"] = pd.to_datetime(df_away["Month"])
-#         for i,r in df_home.iterrows():
-#             if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
-#                 df.at[index,"HomeElo"] = r["Points"]
-#                 df.at[index,"HomeED"] = r["PD"]
-#         for i,r in df_away.iterrows():
-#             if row["Date"].year == r["Month"].year and row["Date"].month == r["Month"].month:
-#                 df.at[index,"AwayElo"] = r["Points"]
-#                 df.at[index,"AwayED"] = r["PD"]
 
     for index,row in df.iterrows():
         home_elo = df_elo.loc[row["Date"], row["Home"]]
         away_elo = df_elo.loc[row["Date"], row["Away"]]    
 
-        df.at[index,"HomeElo"] = home_elo
-        df.at[index,"AwayElo"] = away_elo
+        df.at[index,"HomeRate"] = home_elo
+        df.at[index,"AwayRate"] = away_elo
 
         home_elo_1mago = df_elo.loc[row["Date"]- pd.tseries.offsets.DateOffset(months = 1), row["Home"]]
         away_elo_1mago = df_elo.loc[row["Date"]- pd.tseries.offsets.DateOffset(months = 1), row["Away"]]
 
-        df.at[index,"HomeED"] = home_elo - home_elo_1mago
-        df.at[index,"AwayED"] = away_elo - away_elo_1mago
+        df.at[index,"HomeRD"] = home_elo - home_elo_1mago
+        df.at[index,"AwayRD"] = away_elo - away_elo_1mago
         
-    df[["HomeElo","AwayElo","HomeED","AwayED"]] = round(df[["HomeElo","AwayElo","HomeED","AwayED"]]).astype(int)
+    df[["HomeRate","AwayRate","HomeRD","AwayRD"]] = round(df[["HomeRate","AwayRate","HomeRD","AwayRD"]]).astype(int)
     
     
     df.insert(0,"ID",np.nan)

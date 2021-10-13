@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 11010805,2011,1,2011-03-05,nagoya-grampus-eight,yokohama-fa-marinos,8,5,1,1,0,豊田ス,27153,1594,1509,0,0
 11010920,2011,1,2011-03-05,gamba-osaka,cerezo-osaka,9,20,2,1,1,万博,20055,1589,1532,0,0
 11012813,2011,1,2011-03-05,ventforet-kofu,jubilo-iwata,28,13,0,1,2,中銀スタ,15040,1401,1475,0,0

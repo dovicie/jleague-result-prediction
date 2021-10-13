@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 15010846,2015,1,2015-03-07,nagoya-grampus-eight,matsumoto-yamaga,8,46,3,3,0,豊田ス,33558,1537,1380,0,0
 15010922,2015,1,2015-03-07,gamba-osaka,fc-tokyo,9,22,2,2,0,万博,18332,1592,1525,0,0
 15011028,2015,1,2015-03-07,sanfrecce-hiroshima,ventforet-kofu,10,28,2,0,1,Ｅスタ,14671,1557,1471,0,0

@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 13010512,2013,1,2013-03-02,yokohama-fa-marinos,shonan-bellmare,5,12,4,2,1,日産ス,24298,1550,1312,0,0
 13010813,2013,1,2013-03-02,nagoya-grampus-eight,jubilo-iwata,8,13,1,1,0,豊田ス,21748,1578,1481,0,0
 13013301,2013,1,2013-03-02,sagan-tosu,kashima-antlers,33,1,1,1,0,ベアスタ,12728,1470,1537,0,0

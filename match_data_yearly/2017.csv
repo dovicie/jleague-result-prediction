@@ -1,4 +1,4 @@
-ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeElo,AwayElo,HomeED,AwayED
+ID,Year,Sec,Date,Home,Away,HomeID,AwayID,HomeGF,AwayGF,W/L,Stadium,Attendances,HomeRate,AwayRate,HomeRD,AwayRD
 17010503,2017,1,2017-02-25,yokohama-fa-marinos,urawa-red-diamonds,5,3,3,2,1,日産ス,39284,1562,1662,0,0
 17010718,2017,1,2017-02-25,shimizu-s-pulse,vissel-kobe,7,18,0,1,2,アイスタ,17861,1406,1524,0,0
 17010122,2017,1,2017-02-25,kashima-antlers,fc-tokyo,1,22,0,1,2,カシマ,28240,1569,1560,0,0
