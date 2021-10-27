@@ -1,6 +1,9 @@
 import pandas as pd
+import glob
+import re
+import os
 
-def get_recent_match_id(match_id):
+def get_recent_match_id(match_id,match_range=5):
     df = pd.read_csv("./match_data_yearly/all_years.csv")
     df.sort_values("Date",ascending=False, inplace=True)
     df.reset_index(drop=True, inplace=True)
@@ -25,19 +28,19 @@ def get_recent_match_id(match_id):
     for i ,r in df[target_line+1:target_line+300:].iterrows():
         if home == r["Home"] or home == r["Away"]:
             home_recent_matches.append(r["ID"])
-            if len(home_recent_matches) == 5:
+            if len(home_recent_matches) == match_range:
                 break
 
     for i ,r in df[target_line+1:target_line+300:].iterrows():
         if away == r["Home"] or away == r["Away"]:
             away_recent_matches.append(r["ID"])
-            if len(away_recent_matches) == 5:
+            if len(away_recent_matches) == match_range:
                 break
 
     
     return home_recent_matches, away_recent_matches
 
-def get_ave_recent_stats(match_id):
+def get_ave_recent_stats(match_id, match_range=5):
     home = ""
     away = ""
     
@@ -53,7 +56,7 @@ def get_ave_recent_stats(match_id):
 
     # Home
     for mid in get_recent_match_id(match_id)[0]:
-        s = pd.read_csv(f"./stats/*/{mid}.csv", index_col=0)[home]
+        s = pd.read_csv(glob.glob(f"./stats/*/{mid}.csv")[0], index_col=0)[home]
         home_recent_stats = pd.concat([home_recent_stats, s], axis = 1)
     home_ave_recent_stats = home_recent_stats.mean(axis=1)
     
@@ -72,7 +75,7 @@ def get_ave_recent_stats(match_id):
 
     # Away
     for mid in get_recent_match_id(match_id)[1]:
-        s = pd.read_csv(f"./stats/*/{mid}.csv", index_col=0)[away]
+        s = pd.read_csv(glob.glob(f"./stats/*/{mid}.csv")[0], index_col=0)[away]
         away_recent_stats = pd.concat([away_recent_stats, s], axis = 1)     
     away_ave_recent_stats = away_recent_stats.mean(axis=1)
     
