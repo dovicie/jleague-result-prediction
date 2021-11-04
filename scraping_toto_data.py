@@ -18,11 +18,17 @@ df_match_data_all = pd.read_csv("./match_data_yearly/all_years.csv")
 df_match_data_all["Date"] = pd.to_datetime(df_match_data_all["Date"])
 df_match_data_all =df_match_data_all.set_index(["Date"], drop=True)
 
+# 対象外試合を含む回(ルヴァン,ナビスコ,天皇杯)
+not_covered_nos = [439, 442, 451, 454, 518, 556, 559, 566, 570, 571, 575, 612, 613, 615, 617, 621, 626, 628, 634, 635, 651, 656, 661, 669, 671, 681, 684, 687, 695, 696, 697, 698, 707, 716, 719, 720, 726, 727, 735, 752, 754, 757, 760, 767, 769, 771, 791, 792, 799, 800, 805, 813, 816, 831, 832, 835, 839, 846, 848, 850, 869, 870, 875, 878, 879, 888, 899, 901, 914, 920, 924, 926, 928, 932, 934, 939, 945, 953, 955, 959, 962, 963, 967, 978, 990, 992, 997, 1001, 1007, 1009, 1026, 1037, 1040, 1041, 1044, 1047, 1048, 1050, 1057, 1074, 1076, 1083, 1087, 1091, 1095, 1100, 1102, 1104, 1112, 1118, 1119, 1122, 1127, 1129, 1132, 1144, 1155, 1177, 1179, 1184, 1194, 1225, 1231, 1235, 1238, 1243, 1244, 1255, 1260, 1263]
 
 def scrape(year, first, final):
     df=pd.DataFrame(columns=column)
     
     for n in range(first,final):
+        
+        if (n in not_covered_nos):
+            continue
+            
         url =f'https://toto.rakuten.co.jp/toto/result/{n:04}/'
         r = requests.get(url)
         soup = BeautifulSoup(r.text, 'html.parser')
