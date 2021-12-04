@@ -232,9 +232,10 @@ def predict_goalfor_with_poisson(match_id, match_range = 17):
     
     x =  np.arange(0, 10, 1)
     
-    home_poisson = poisson.pmf(x, homegf_pred)
-    away_poisson = poisson.pmf(x, awaygf_pred)
+    home_poisson = [float(round(s,4) )for s in poisson.pmf(x, homegf_pred)]
+    away_poisson = [float(round(s,4) )for s in poisson.pmf(x, awaygf_pred)]
     
+    
+    return [dict(zip([0,1,2,3,4,5,6,7,8,9],home_poisson)),dict(zip([0,1,2,3,4,5,6,7,8,9],away_poisson))]
 
-    
-    return [home_poisson.tolist(),away_poisson.tolist()]
+
