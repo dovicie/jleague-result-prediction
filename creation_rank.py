@@ -3,63 +3,48 @@ import numpy as np
 import pandas as pd
 from datetime import timedelta
 
-def get_points_and_gd(year,clubs):
+
+def create_rank(year,clubs):
     df_match = pd.read_csv(f"./match_data_yearly/{year}.csv")
     df_match["Date"] =  pd.to_datetime(df_match["Date"])
-    df_match.sort_values(['Date','Sec']).reset_index(drop=True)  
+    df_match.sort_values(['Date','Sec']).reset_index(drop=True)    
     
     date_index = pd.date_range(start=df_match.iloc[0]["Date"] , end=df_match.iloc[-1]["Date"]+timedelta(days=1), freq="D")
+
+    df_points = pd.read_csv(f"./points/{year}.csv",parse_dates=[0],index_col=0)
+    df_gd = pd.read_csv(f"./goal_differences/{year}.csv",parse_dates=[0], index_col=0)
     
-    df_points = pd.DataFrame(columns=clubs, index=date_index)
-    df_points.iloc[0] = 0
-    
-    df_gd = pd.DataFrame(columns=clubs, index=date_index)
-    df_gd.iloc[0] = 0
+    df_rank = pd.DataFrame(columns=clubs, index=date_index)
 
-    
-    for date in date_index[:-1]:
-        next_date = date +timedelta(days=1)
-        df_currentday_match = df_match[df_match["Date"] == date]
+    for index,row in df_rank.iterrows():
 
-        for index, row in df_currentday_match.iterrows():
-            # points
-            current_home_point = df_points.at[date, row["Home"]]
-            current_away_point = df_points.at[date, row["Away"]]
+        current_points_gd = pd.DataFrame(index=clubs, columns=["Points","GD"]) 
+        current_points_gd["Points"] = df_points.loc[index].values
+        current_points_gd["GD"] = df_gd.loc[index].values
+        current_points_gd=current_points_gd.sort_values(["Points","GD"], ascending=False)
 
-            if row["W/L"] == 0:
-                next_home_point = current_home_point + 1
-                next_away_point = current_away_point + 1
-                df_points.at[next_date,row["Home"]] = next_home_point
-                df_points.at[next_date,row["Away"]] = next_away_point
-
-            elif row["W/L"] == 1:
-                next_home_point = current_home_point + 3
-                df_points.at[next_date,row["Home"]] = next_home_point
+        current_ranks = []
+        tie_count = 1
+        rank = 0
+        prev_row = None
+        for i, r in current_points_gd.iterrows():
+            if tuple(r) != prev_row:
+                rank += tie_count
+                tie_count = 1
             else:
-                next_away_point = current_away_point + 3
-                df_points.at[next_date,row["Away"]] = next_away_point
-                
-            # goal_differences
-            current_home_gd = df_gd.at[date, row["Home"]]
-            current_away_gd = df_gd.at[date, row["Away"]]
+                tie_count += 1
 
-            next_home_gd = current_home_gd + (row["HomeGF"] - row["AwayGF"])
-            next_away_gd = current_away_gd + (row["AwayGF"] - row["HomeGF"])
+            current_ranks.append(rank)
+            prev_row = tuple(r)
 
-            df_gd.at[next_date,row["Home"]] = next_home_gd
-            df_gd.at[next_date,row["Away"]] = next_away_gd
 
-        
-        df_points.loc[next_date]=df_points.loc[next_date].fillna(df_points.loc[date])
-        df_gd.loc[next_date]=df_gd.loc[next_date].fillna(df_gd.loc[date])
-       
-    df_points.to_csv(f"./points/{year}.csv", index_label="date")
-    df_gd.to_csv(f"./goal_differences/{year}.csv", index_label="date")
+        current_points_gd['Rank'] = current_ranks
+        df_rank.loc[index] = current_points_gd['Rank']
     
-#     df_rank = df_points.rank(axis=1,method='min',ascending=False).astype(int)  
-#     df_rank.to_csv(f"./points_rank/{year}.csv", index_label="date")
-
-def main():
+    df_rank.to_csv(f"./ranks/{year}.csv")
+    
+def main ():
+    
     clubs_2006 = [
         'kashima-antlers', 'jef-united', 'urawa-red-diamonds', 
          'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
@@ -204,11 +189,14 @@ def main():
          'shonan-bellmare',  'nagoya-grampus-eight',
           'oita-trinita', 'kashiwa-reysol', 'yokohama-fc',
     ]
-    for year,clubs in zip(range(2006,2021),[clubs_2006,clubs_2007,clubs_2008,clubs_2009,clubs_2010,clubs_2011,clubs_2012,clubs_2013,clubs_2014,clubs_2015,clubs_2016,clubs_2017,clubs_2018,clubs_2019,clubs_2020]):
-        get_points_and_gd(year,clubs)
+
+    for year,clubs in zip(range(2006,2021), [clubs_2006,clubs_2007,clubs_2008,clubs_2009,clubs_2010,clubs_2011,clubs_2012,clubs_2013,clubs_2014,clubs_2015,clubs_2016,clubs_2017,clubs_2018,clubs_2019,clubs_2020]):
+        create_rank(year,clubs)
+        
     
 if __name__ == '__main__':
     main()
     
     
-  
+        
+        
