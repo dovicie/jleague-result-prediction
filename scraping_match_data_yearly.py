@@ -1,5 +1,7 @@
 import re
 import csv
+import os
+import glob
 import time
 import requests
 import datetime
@@ -9,9 +11,9 @@ from bs4 import BeautifulSoup
 
 club_and_id = pd.read_csv('./club_and_id.csv')
 
-df_elo = pd.read_csv("./elorating.csv")
-df_elo["date"] = pd.to_datetime(df_elo["date"])
-df_elo = df_elo.set_index("date")
+# df_elo = pd.read_csv("./elorating.csv")
+# df_elo["date"] = pd.to_datetime(df_elo["date"])
+# df_elo = df_elo.set_index("date")
 
 def write_data(year):        
     url = f'https://data.j-league.or.jp/SFMS01/search?competition_years={year}&competition_frame_ids=1' 
@@ -89,27 +91,27 @@ def preprocess_data(year):
     df["Attendances"] = df["Attendances"].str.replace(',','').astype(int)
 
 
-    df.insert(12 ,"HomeRate", np.nan)
-    df.insert(13,"AwayRate",np.nan)
-    df.insert(14 ,"HomeRD", np.nan)
-    df.insert(15,"AwayRD",np.nan)
+#     df.insert(12 ,"HomeRate", np.nan)
+#     df.insert(13,"AwayRate",np.nan)
+#     df.insert(14 ,"HomeRD", np.nan)
+#     df.insert(15,"AwayRD",np.nan)
     
-    df["Date"]=pd.to_datetime(df["Date"])
+#     df["Date"]=pd.to_datetime(df["Date"])
 
-    for index,row in df.iterrows():
-        home_elo = df_elo.loc[row["Date"], row["Home"]]
-        away_elo = df_elo.loc[row["Date"], row["Away"]]    
+#     for index,row in df.iterrows():
+#         home_elo = df_elo.loc[row["Date"], row["Home"]]
+#         away_elo = df_elo.loc[row["Date"], row["Away"]]    
 
-        df.at[index,"HomeRate"] = home_elo
-        df.at[index,"AwayRate"] = away_elo
+#         df.at[index,"HomeRate"] = home_elo
+#         df.at[index,"AwayRate"] = away_elo
 
-        home_elo_1mago = df_elo.loc[row["Date"]- pd.tseries.offsets.DateOffset(months = 1), row["Home"]]
-        away_elo_1mago = df_elo.loc[row["Date"]- pd.tseries.offsets.DateOffset(months = 1), row["Away"]]
+#         home_elo_1mago = df_elo.loc[row["Date"]- pd.tseries.offsets.DateOffset(months = 1), row["Home"]]
+#         away_elo_1mago = df_elo.loc[row["Date"]- pd.tseries.offsets.DateOffset(months = 1), row["Away"]]
 
-        df.at[index,"HomeRD"] = home_elo - home_elo_1mago
-        df.at[index,"AwayRD"] = away_elo - away_elo_1mago
+#         df.at[index,"HomeRD"] = home_elo - home_elo_1mago
+#         df.at[index,"AwayRD"] = away_elo - away_elo_1mago
         
-    df[["HomeRate","AwayRate","HomeRD","AwayRD"]] = round(df[["HomeRate","AwayRate","HomeRD","AwayRD"]]).astype(int)
+#     df[["HomeRate","AwayRate","HomeRD","AwayRD"]] = round(df[["HomeRate","AwayRate","HomeRD","AwayRD"]]).astype(int)
     
     
     df.insert(0,"ID",np.nan)
@@ -121,11 +123,27 @@ def preprocess_data(year):
 
     df.to_csv(f'./match_data_yearly/{year}.csv',index=False)
     
+def create_all_years():
+
+    csvs = glob.glob('./match_data_yearly/20*.csv')
+    df = pd.DataFrame()
+    for csv in csvs:
+        df = df.append(pd.read_csv(csv))
+    df = df.sort_values(['Date','Sec']).reset_index(drop=True) 
+
+    df["ID"] = df["ID"].astype(str)
+    for index,row in df.iterrows():
+        df.at[index,"ID"]  = str(row["ID"]).zfill(8)
+
+    df.to_csv("./match_data_yearly/all_years.csv",index=False)
+
 def main():
-    for year in (2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020):
+    for year in range(2006,2021):
         write_data(year)
         preprocess_data(year)
         time.sleep(1)
+        
+    create_all_years()
 
 if __name__ == '__main__':
     main()
