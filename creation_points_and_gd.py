@@ -1,4 +1,7 @@
+import re
+import os
 import csv
+import glob
 import numpy as np
 import pandas as pd
 from datetime import timedelta
@@ -58,6 +61,31 @@ def get_points_and_gd(year,clubs):
     
 #     df_rank = df_points.rank(axis=1,method='min',ascending=False).astype(int)  
 #     df_rank.to_csv(f"./points_rank/{year}.csv", index_label="date")
+
+def create_allyears_points():
+    csvs= glob.glob("./points/20*.csv")
+    df_points_allyears=pd.DataFrame()
+    for csv in csvs:
+        df_points_allyears = df_points_allyears.append(pd.read_csv(csv, index_col=0, parse_dates=True))
+    df_points_allyears=df_points_allyears.sort_index()
+    df_points_allyears=df_points_allyears.fillna(0).astype(int)
+    
+    df_points_allyears.to_csv("./points/all_years.csv")
+    
+    
+
+def create_allyears_gd():
+    csvs= glob.glob("./goal_differences/20*.csv")
+    df_gd_allyears=pd.DataFrame()
+    for csv in csvs:
+        df_gd_allyears = df_gd_allyears.append(pd.read_csv(csv, index_col=0, parse_dates=True))
+    df_gd_allyears=df_gd_allyears.sort_index()
+    df_gd_allyears=df_gd_allyears.fillna(0).astype(int)
+    
+    df_gd_allyears.to_csv("./goal_differences/all_years.csv")
+    
+    
+        
 
 def main():
     clubs_2006 = [
@@ -206,6 +234,8 @@ def main():
     ]
     for year,clubs in zip(range(2006,2021),[clubs_2006,clubs_2007,clubs_2008,clubs_2009,clubs_2010,clubs_2011,clubs_2012,clubs_2013,clubs_2014,clubs_2015,clubs_2016,clubs_2017,clubs_2018,clubs_2019,clubs_2020]):
         get_points_and_gd(year,clubs)
+    create_allyears_points()
+    create_allyears_gd()
     
 if __name__ == '__main__':
     main()

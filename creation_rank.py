@@ -1,4 +1,7 @@
+import re
+import os
 import csv
+import glob
 import numpy as np
 import pandas as pd
 from datetime import timedelta
@@ -42,6 +45,17 @@ def create_rank(year,clubs):
         df_rank.loc[index] = current_points_gd['Rank']
     
     df_rank.to_csv(f"./ranks/{year}.csv")
+    
+def create_allyears_ranks():
+    csvs= glob.glob("./ranks/20*.csv")
+    df_ranks_allyears=pd.DataFrame()
+    for csv in csvs:
+        df_ranks_allyears = df_ranks_allyears.append(pd.read_csv(csv, index_col=0, parse_dates=True))
+    df_ranks_allyears=df_ranks_allyears.sort_index()
+    df_ranks_allyears=df_ranks_allyears.fillna(19).astype(int)
+    
+    df_ranks_allyears.to_csv("./ranks/all_years.csv")
+        
     
 def main ():
     
@@ -192,6 +206,8 @@ def main ():
 
     for year,clubs in zip(range(2006,2021), [clubs_2006,clubs_2007,clubs_2008,clubs_2009,clubs_2010,clubs_2011,clubs_2012,clubs_2013,clubs_2014,clubs_2015,clubs_2016,clubs_2017,clubs_2018,clubs_2019,clubs_2020]):
         create_rank(year,clubs)
+        
+    create_allyears_ranks()
         
     
 if __name__ == '__main__':
