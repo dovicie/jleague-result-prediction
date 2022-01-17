@@ -88,151 +88,133 @@ def create_allyears_gd():
         
 
 def main():
-    clubs_2006 = [
-        'kashima-antlers', 'jef-united', 'urawa-red-diamonds', 
-         'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
-         'gamba-osaka', 'sanfrecce-hiroshima',  'jubilo-iwata',  'cerezo-osaka', 
-         'kawasaki-frontale', 'fc-tokyo', 'avispa-fukuoka', 'kyoto-sanga', 
-         'omiya-ardija', 'ventforet-kofu',  'oita-trinita','albirex-niigata'
+    j1clubs = [
+        [
+            'kashima-antlers', 'jef-united', 'urawa-red-diamonds', 
+             'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
+             'gamba-osaka', 'sanfrecce-hiroshima',  'jubilo-iwata',  'cerezo-osaka', 
+             'kawasaki-frontale', 'fc-tokyo', 'avispa-fukuoka', 'kyoto-sanga', 
+             'omiya-ardija', 'ventforet-kofu',  'oita-trinita','albirex-niigata'
+        ],[
+            'kashima-antlers', 'jef-united', 'urawa-red-diamonds', 
+            'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
+            'gamba-osaka', 'sanfrecce-hiroshima',  'jubilo-iwata',  
+            'kawasaki-frontale', 'fc-tokyo',   
+            'omiya-ardija', 'ventforet-kofu',  'oita-trinita','albirex-niigata',
+            'vissel-kobe','kashiwa-reysol','yokohama-fc',
+        ],[
+            'kashima-antlers', 'jef-united', 'urawa-red-diamonds', 
+            'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
+            'gamba-osaka',  'jubilo-iwata',  
+            'kawasaki-frontale', 'fc-tokyo',   
+            'omiya-ardija',   'oita-trinita','albirex-niigata',
+            'vissel-kobe','kashiwa-reysol',
+            'consadole-sapporo',  'tokyo-verdy','kyoto-sanga',
+        ],[
+            'kashima-antlers', 'jef-united', 'urawa-red-diamonds', 
+             'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
+             'gamba-osaka',  'jubilo-iwata',  
+             'kawasaki-frontale', 'fc-tokyo',   
+             'omiya-ardija',   'oita-trinita','albirex-niigata',
+            'vissel-kobe','kashiwa-reysol',
+             'kyoto-sanga','sanfrecce-hiroshima', 'montedio-yamagata',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 
+            'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
+            'gamba-osaka',  'jubilo-iwata',  
+            'kawasaki-frontale', 'fc-tokyo',   
+            'omiya-ardija',   'albirex-niigata',
+            'vissel-kobe',
+            'kyoto-sanga','sanfrecce-hiroshima', 'montedio-yamagata',
+            'vegalta-sendai', 'cerezo-osaka', 'shonan-bellmare',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 
+            'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
+            'gamba-osaka',  'jubilo-iwata',  
+            'kawasaki-frontale',    
+            'omiya-ardija',   'albirex-niigata',
+            'vissel-kobe',
+            'sanfrecce-hiroshima', 'montedio-yamagata',
+            'vegalta-sendai', 'cerezo-osaka',
+            'kashiwa-reysol', 'ventforet-kofu', 'avispa-fukuoka',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 
+             'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
+             'gamba-osaka',  'jubilo-iwata',  'kawasaki-frontale',    
+             'omiya-ardija',   'albirex-niigata','vissel-kobe',
+             'sanfrecce-hiroshima', 'vegalta-sendai', 'cerezo-osaka',
+             'kashiwa-reysol',  'fc-tokyo', 'sagan-tosu', 'consadole-sapporo',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 
+            'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
+            'jubilo-iwata',  'kawasaki-frontale',    
+            'omiya-ardija',   'albirex-niigata',
+            'sanfrecce-hiroshima', 'vegalta-sendai', 'cerezo-osaka',
+            'kashiwa-reysol',  'fc-tokyo', 'sagan-tosu', 
+            'ventforet-kofu', 'shonan-bellmare', 'oita-trinita',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 
+            'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
+            'kawasaki-frontale',    
+            'omiya-ardija',   'albirex-niigata',
+            'sanfrecce-hiroshima', 'vegalta-sendai', 'cerezo-osaka',
+            'kashiwa-reysol',  'fc-tokyo', 'sagan-tosu', 
+            'ventforet-kofu',   'gamba-osaka', 'vissel-kobe', 'tokushima-vortis',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
+            'shimizu-s-pulse', 'nagoya-grampus-eight', 'kawasaki-frontale',
+            'albirex-niigata','sanfrecce-hiroshima', 'vegalta-sendai','kashiwa-reysol',
+            'fc-tokyo', 'sagan-tosu', 'ventforet-kofu', 'gamba-osaka', 
+            'vissel-kobe', 'shonan-bellmare', 'matsumoto-yamaga', 'montedio-yamagata',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
+            'nagoya-grampus-eight', 'kawasaki-frontale',
+            'albirex-niigata','sanfrecce-hiroshima', 'vegalta-sendai','kashiwa-reysol',
+            'fc-tokyo', 'sagan-tosu', 'ventforet-kofu', 'gamba-osaka', 
+            'vissel-kobe', 'shonan-bellmare', 
+            'omiya-ardija', 'jubilo-iwata', 'avispa-fukuoka',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
+            'kawasaki-frontale',
+            'albirex-niigata','sanfrecce-hiroshima', 'vegalta-sendai','kashiwa-reysol',
+            'fc-tokyo', 'sagan-tosu', 'ventforet-kofu', 'gamba-osaka', 
+            'vissel-kobe','omiya-ardija', 'jubilo-iwata', 
+            'consadole-sapporo', 'shimizu-s-pulse', 'cerezo-osaka',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
+            'kawasaki-frontale',
+            'sanfrecce-hiroshima', 'vegalta-sendai','kashiwa-reysol',
+            'fc-tokyo', 'sagan-tosu',  'gamba-osaka', 
+            'vissel-kobe', 'jubilo-iwata', 
+            'consadole-sapporo', 'shimizu-s-pulse', 'cerezo-osaka',
+            'shonan-bellmare', 'v-varen-nagasaki', 'nagoya-grampus-eight',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
+            'kawasaki-frontale',
+            'sanfrecce-hiroshima', 'vegalta-sendai',
+            'fc-tokyo', 'sagan-tosu',  'gamba-osaka', 
+            'vissel-kobe', 'jubilo-iwata', 
+            'consadole-sapporo', 'shimizu-s-pulse', 'cerezo-osaka',
+            'shonan-bellmare',  'nagoya-grampus-eight',
+            'matsumoto-yamaga', 'oita-trinita',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
+            'kawasaki-frontale','sanfrecce-hiroshima', 'vegalta-sendai',
+            'fc-tokyo', 'sagan-tosu',  'gamba-osaka', 'vissel-kobe', 
+            'consadole-sapporo', 'shimizu-s-pulse', 'cerezo-osaka',
+            'shonan-bellmare',  'nagoya-grampus-eight',
+            'oita-trinita', 'kashiwa-reysol', 'yokohama-fc',
+        ],[
+            'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
+            'kawasaki-frontale','sanfrecce-hiroshima', 'vegalta-sendai',
+            'fc-tokyo', 'sagan-tosu',  'gamba-osaka', 'vissel-kobe', 
+            'consadole-sapporo', 'shimizu-s-pulse', 'cerezo-osaka',
+            'shonan-bellmare',  'nagoya-grampus-eight','oita-trinita', 
+            'kashiwa-reysol', 'yokohama-fc','tokushima-vortis','avispa-fukuoka',
+        ]
     ]
-
-    clubs_2007 = [
-        'kashima-antlers', 'jef-united', 'urawa-red-diamonds', 
-         'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
-         'gamba-osaka', 'sanfrecce-hiroshima',  'jubilo-iwata',  
-         'kawasaki-frontale', 'fc-tokyo',   
-         'omiya-ardija', 'ventforet-kofu',  'oita-trinita','albirex-niigata',
-        'vissel-kobe','kashiwa-reysol','yokohama-fc',
-    ]
-
-    clubs_2008 = [
-        'kashima-antlers', 'jef-united', 'urawa-red-diamonds', 
-         'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
-         'gamba-osaka',  'jubilo-iwata',  
-         'kawasaki-frontale', 'fc-tokyo',   
-         'omiya-ardija',   'oita-trinita','albirex-niigata',
-        'vissel-kobe','kashiwa-reysol',
-         'consadole-sapporo',  'tokyo-verdy','kyoto-sanga',
-    ]
-
-    clubs_2009 = [
-        'kashima-antlers', 'jef-united', 'urawa-red-diamonds', 
-         'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
-         'gamba-osaka',  'jubilo-iwata',  
-         'kawasaki-frontale', 'fc-tokyo',   
-         'omiya-ardija',   'oita-trinita','albirex-niigata',
-        'vissel-kobe','kashiwa-reysol',
-         'kyoto-sanga','sanfrecce-hiroshima', 'montedio-yamagata',
-    ]
-
-    clubs_2010 = [
-        'kashima-antlers',  'urawa-red-diamonds', 
-         'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
-         'gamba-osaka',  'jubilo-iwata',  
-         'kawasaki-frontale', 'fc-tokyo',   
-         'omiya-ardija',   'albirex-niigata',
-        'vissel-kobe',
-         'kyoto-sanga','sanfrecce-hiroshima', 'montedio-yamagata',
-         'vegalta-sendai', 'cerezo-osaka', 'shonan-bellmare',
-    ]
-
-    clubs_2011 = [
-        'kashima-antlers',  'urawa-red-diamonds', 
-         'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
-         'gamba-osaka',  'jubilo-iwata',  
-         'kawasaki-frontale',    
-         'omiya-ardija',   'albirex-niigata',
-        'vissel-kobe',
-         'sanfrecce-hiroshima', 'montedio-yamagata',
-         'vegalta-sendai', 'cerezo-osaka',
-         'kashiwa-reysol', 'ventforet-kofu', 'avispa-fukuoka',
-    ]
-
-    clubs_2012 = [
-        'kashima-antlers',  'urawa-red-diamonds', 
-         'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
-         'gamba-osaka',  'jubilo-iwata',  'kawasaki-frontale',    
-         'omiya-ardija',   'albirex-niigata','vissel-kobe',
-         'sanfrecce-hiroshima', 'vegalta-sendai', 'cerezo-osaka',
-         'kashiwa-reysol',  'fc-tokyo', 'sagan-tosu', 'consadole-sapporo',
-    ]
-
-    clubs_2013 = [
-        'kashima-antlers',  'urawa-red-diamonds', 
-         'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
-        'jubilo-iwata',  'kawasaki-frontale',    
-         'omiya-ardija',   'albirex-niigata',
-         'sanfrecce-hiroshima', 'vegalta-sendai', 'cerezo-osaka',
-         'kashiwa-reysol',  'fc-tokyo', 'sagan-tosu', 
-         'ventforet-kofu', 'shonan-bellmare', 'oita-trinita',
-    ]
-
-    clubs_2014 = [
-        'kashima-antlers',  'urawa-red-diamonds', 
-         'yokohama-fa-marinos', 'shimizu-s-pulse', 'nagoya-grampus-eight', 
-         'kawasaki-frontale',    
-         'omiya-ardija',   'albirex-niigata',
-         'sanfrecce-hiroshima', 'vegalta-sendai', 'cerezo-osaka',
-         'kashiwa-reysol',  'fc-tokyo', 'sagan-tosu', 
-         'ventforet-kofu',   'gamba-osaka', 'vissel-kobe', 'tokushima-vortis',
-    ]
-
-    clubs_2015 = [
-        'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
-        'shimizu-s-pulse', 'nagoya-grampus-eight', 'kawasaki-frontale',
-        'albirex-niigata','sanfrecce-hiroshima', 'vegalta-sendai','kashiwa-reysol',
-        'fc-tokyo', 'sagan-tosu', 'ventforet-kofu', 'gamba-osaka', 
-        'vissel-kobe', 'shonan-bellmare', 'matsumoto-yamaga', 'montedio-yamagata',
-    ]
-
-    clubs_2016 = [
-        'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
-        'nagoya-grampus-eight', 'kawasaki-frontale',
-        'albirex-niigata','sanfrecce-hiroshima', 'vegalta-sendai','kashiwa-reysol',
-        'fc-tokyo', 'sagan-tosu', 'ventforet-kofu', 'gamba-osaka', 
-        'vissel-kobe', 'shonan-bellmare', 
-        'omiya-ardija', 'jubilo-iwata', 'avispa-fukuoka',
-    ]
-
-    clubs_2017 = [
-        'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
-         'kawasaki-frontale',
-        'albirex-niigata','sanfrecce-hiroshima', 'vegalta-sendai','kashiwa-reysol',
-        'fc-tokyo', 'sagan-tosu', 'ventforet-kofu', 'gamba-osaka', 
-        'vissel-kobe','omiya-ardija', 'jubilo-iwata', 
-         'consadole-sapporo', 'shimizu-s-pulse', 'cerezo-osaka',
-    ]
-
-    clubs_2018 = [
-        'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
-         'kawasaki-frontale',
-        'sanfrecce-hiroshima', 'vegalta-sendai','kashiwa-reysol',
-        'fc-tokyo', 'sagan-tosu',  'gamba-osaka', 
-        'vissel-kobe', 'jubilo-iwata', 
-         'consadole-sapporo', 'shimizu-s-pulse', 'cerezo-osaka',
-         'shonan-bellmare', 'v-varen-nagasaki', 'nagoya-grampus-eight',
-    ]
-
-    clubs_2019 = [
-        'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
-         'kawasaki-frontale',
-        'sanfrecce-hiroshima', 'vegalta-sendai',
-        'fc-tokyo', 'sagan-tosu',  'gamba-osaka', 
-        'vissel-kobe', 'jubilo-iwata', 
-         'consadole-sapporo', 'shimizu-s-pulse', 'cerezo-osaka',
-         'shonan-bellmare',  'nagoya-grampus-eight',
-         'matsumoto-yamaga', 'oita-trinita',
-    ]
-
-    clubs_2020 = [
-        'kashima-antlers',  'urawa-red-diamonds', 'yokohama-fa-marinos',
-         'kawasaki-frontale','sanfrecce-hiroshima', 'vegalta-sendai',
-        'fc-tokyo', 'sagan-tosu',  'gamba-osaka', 'vissel-kobe', 
-         'consadole-sapporo', 'shimizu-s-pulse', 'cerezo-osaka',
-         'shonan-bellmare',  'nagoya-grampus-eight',
-          'oita-trinita', 'kashiwa-reysol', 'yokohama-fc',
-    ]
-    for year,clubs in zip(range(2006,2021),[clubs_2006,clubs_2007,clubs_2008,clubs_2009,clubs_2010,clubs_2011,clubs_2012,clubs_2013,clubs_2014,clubs_2015,clubs_2016,clubs_2017,clubs_2018,clubs_2019,clubs_2020]):
+    
+    for year,clubs in zip(range(2006,2022), j1clubs):
         get_points_and_gd(year,clubs)
     create_allyears_points()
     create_allyears_gd()

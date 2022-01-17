@@ -138,7 +138,7 @@ def create_all_years():
     df.to_csv("./match_data_yearly/all_years.csv",index=False)
 
 def main():
-    for year in range(2006,2021):
+    for year in range(2006,2022):
         write_data(year)
         preprocess_data(year)
         time.sleep(1)
