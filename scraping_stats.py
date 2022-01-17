@@ -97,7 +97,7 @@ def scrape(year):
     
     
 def main():
-    for year in (2012,2013,2014,2015,2016,2017,2018,2019,2020):
+    for year in range(2012,2022):
         scrape(year)
         
 if __name__ == '__main__':
